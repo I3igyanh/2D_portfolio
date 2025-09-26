@@ -1,6 +1,6 @@
 import { DIAGONAL_FACTOR } from "../constant.js";
 import {
-  isEmailModalVisibleAtom,
+  isGmailModalVisibleAtom,
   isProjectModalVisibleAtom,
   isSocialModalVisibleAtom,
   store,
@@ -55,7 +55,7 @@ export default function makePlayer(k, posVec2, speed) {
 
     if (
       store.get(isSocialModalVisibleAtom) ||
-      store.get(isEmailModalVisibleAtom) ||
+      store.get(isGmailModalVisibleAtom) ||
       store.get(isProjectModalVisibleAtom)
     )
       return;

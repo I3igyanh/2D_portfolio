@@ -9,8 +9,8 @@ const ui = document.getElementById("ui");
 const root = createRoot(ui);
 root.render(
     <StrictMode>
-        <Provider store = {store}>
-        <ReactUI />
+        <Provider store={store}>
+            <ReactUI />
         </Provider>
     </StrictMode>
 );

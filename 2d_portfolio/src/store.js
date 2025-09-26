@@ -6,8 +6,8 @@ export const isSocialModalVisibleAtom = atom(false);//link kholna pop up
 export const selectedLinkAtom = atom (null);
 export const selectedLinkDescriptionAtom = atom(null);
 
-export const isEmailModalVisibleAtom = atom(false);
-export const emailAtom = atom("");
+export const isGmailModalVisibleAtom = atom(false);
+export const gmailAtom = atom("");
 
 export const isProjectModalVisibleAtom = atom(false);
 export const chosenProjectDataAtom = atom({
