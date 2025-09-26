@@ -1,0 +1,107 @@
+import { Loop } from "three/tsl";
+import { PALETTE } from "./constant";
+import makeKaplayCtx from "./kaplayCtx";
+import makePlayer  from "./entities/player";
+import { cameraZoomValueAtom } from "./store";
+import { store } from "./store";
+import makeSection from "./components/Section";
+
+//walk animation function
+export default async function initGame(){
+    const k = makeKaplayCtx();
+    k.loadSprite("player","./sprites/player.png", {
+        sliceX:4,
+        sliceY:8,
+        anims:{
+            "walk-down-idle":0,
+           "walk-down": { from: 0, to: 3, loop: true },
+           "walk-left-down": { from: 4, to: 7, loop: true },
+      "walk-left-down-idle": 4,
+      "walk-left": { from: 8, to: 11, loop: true },
+      "walk-left-idle": 8,
+      "walk-left-up": { from: 12, to: 15, loop: true },
+      "walk-left-up-idle": 12,
+      "walk-up": { from: 16, to: 19, loop: true },
+      "walk-up-idle": 16,
+      "walk-right-up": { from: 20, to: 23, loop: true },
+      "walk-right-up-idle": 20,
+      "walk-right": { from: 24, to: 27, loop: true },
+      "walk-right-idle": 24,
+      "walk-right-down": { from: 28, to: 31, loop: true },
+      "walk-right-down-idle": 28,
+         
+        }
+    });
+
+    k.loadFont("ibm-regular", "./fonts/IBMPlexSans-Regular.ttf");
+  k.loadFont("ibm-bold", "./fonts/IBMPlexSans-Bold.ttf");
+  k.loadSprite("github-logo", "./logos/github-logo.png");
+  k.loadSprite("linkedin-logo", "./logos/linkedin-logo.png");
+  k.loadSprite("javascript-logo", "./logos/js-logo.png");
+  k.loadSprite("react-logo", "./logos/react-logo.png");
+  k.loadSprite("postgres-logo", "./logos/postgres-logo.png");
+  k.loadSprite("html-logo", "./logos/html-logo.png");
+  k.loadSprite("css-logo", "./logos/css-logo.png");
+  k.loadSprite("tailwind-logo", "./logos/tailwind-logo.png");
+  k.loadSprite("gmail-logo", "./logos/gmail.png");
+  k.loadSprite("canva-logo", "./logos/canva-logo.png");
+  k.loadSprite("figma-logo", "./logos/figma-logo.png");
+  k.loadSprite("photoshop-logo", "./logos/adobe-photoshop.png");
+  k.loadSprite("illustrator-logo", "./logos/adobe-illustrator.png");
+  k.loadShaderURL("tiledPattern", null, "./shaders/tiledPattern.frag");
+
+  //player zoom based on screen size garna
+  const setInitCamZoomValue = () => {
+  if (k.width() < 1000) {
+    k.setCamScale(k.vec2(0.5));
+    store.set(cameraZoomValueAtom, 0.5);
+  } else {
+    store.set(cameraZoomValueAtom, 0.8);
+    k.setCamScale(k.vec2(0.8));
+  }
+};
+
+// run once
+setInitCamZoomValue();
+
+
+k.onUpdate(() => {
+  const camZoomValue = store.get(cameraZoomValueAtom);
+  if (camZoomValue !== k.scale()) k .setCamScale(k.vec2(camZoomValue));
+  
+});
+
+  const tiledBackground = k.add([
+  k.uvquad(k.width(), k.height()),
+  k.shader("tiledPattern", () => ({
+    u_time: 0, // initialize
+    u_color1: k.Color.fromHex(PALETTE.color3),
+    u_color2: k.Color.fromHex(PALETTE.color1),
+    u_speed: k.vec2(1, -1),
+    u_aspect: k.width() / k.height(),
+    u_size: 5,
+  })),
+  k.pos(0, 0),
+  k.fixed(),
+]);
+
+tiledBackground.onUpdate(() => {
+  tiledBackground.uniform.u_time = k.time() / 20; // update time every frame
+});
+
+makeSection(k, k.vec2(k.center().x, k.center().y - 300), "About", (section) => {
+
+
+});
+
+makeSection(k, k.vec2(k.center().x - 400, k.center().y + 100), "Projects", (section) => {
+
+});
+
+makeSection(k, k.vec2(k.center().x + 400, k.center().y + 100), "Skills", (section) => {
+  
+});
+
+makePlayer (k,k.vec2(k.center()),700);
+
+}
