@@ -97,23 +97,23 @@ export default async function initGame() {
     tiledBackground.uniform.u_time = k.time() / 20; // update time every frame
   });
 
-  makeSection(k, k.vec2(k.center().x, k.center().y - 300), "About", (section) => {
+  makeSection(k, k.vec2(k.center().x, k.center().y - 400), "About", (section) => {
     const container = section.add([
-      k.pos(0, 50),
+      k.pos(-805, -700),
       k.opacity(0),
-      k.text(generelData.header.title, { font: "ibm-bold", size: 32 }),
+      k.text(generelData.header.title, { font: "ibm-bold", size: 70 }),
       k.color(k.Color.fromHex(PALETTE.color2)),
-      k.pos(395, 0),
+      k.pos(-800, -500),
       k.opacity(0),
     ]);
     container.add([
-      k.text(generelData.header.subtitle, { font: "ibm-regular", size: 20 }),
+      k.text(generelData.header.subtitle, { font: "ibm-regular", size: 36 }),
       k.color(k.Color.fromHex(PALETTE.color2)),
-      k.pos(-1100, -600),
+      k.pos(485, 100),
       k.opacity(0),
     ]);
 
-    const socialContainer = container.add([k.pos(-1100, -600), k.opacity(0)]);
+    const socialContainer = container.add([k.pos(130, 0), k.opacity(0)]);
 
     for (const item of socialData) {
       if (item.name === "Gmail") {

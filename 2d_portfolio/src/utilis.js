@@ -11,7 +11,7 @@ export async function makeAppear(k, gameObj) {
 
 export function opacityTrickleDown(parent, indirectchildren) {
     parent.opacityTrickleDown = parent.onUpdate(() => {
-        for (const child of parent.children) {
+        for (const child of indirectchildren) {
             child.opacity = parent.opacity;
         }
     });

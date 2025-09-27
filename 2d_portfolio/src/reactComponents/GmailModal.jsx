@@ -1,5 +1,5 @@
 import { useAtom, useAtomValue } from "jotai";
-import { isGmailModalVisibleAtom } from "../store";
+import { isGmailModalVisibleAtom,gmailAtom } from "../store";
 import { useState } from "react";
 
 export default function GmailModal() {
