@@ -7,7 +7,7 @@
         "name": "GitHub",
         "description": "GitHub is where I host my projects.",
         "link": "https://github.com/I3igyanh",
-        "logoData": {
+        "imageData": {
             "name": "github-logo",
             "width": 228.6,
             "height": 179.5
@@ -21,7 +21,7 @@
         "name": "LinkedIn",
         "description": "LinkedIn is where I network with professionals.",
         "link": "https://www.linkedin.com/in/jslegenddev/",
-        "logoData": {
+        "imageData": {
             "name": "linkedin-logo",
             "width": 128,
             "height": 128
@@ -34,7 +34,7 @@
         },
         "name": "Gmail",
         "address": "him410935@gmail.com",
-        "logoData": {
+        "imageData": {
             "name": "gmail-logo",
             "width": 128,
             "height": 128

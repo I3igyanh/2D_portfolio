@@ -32,7 +32,6 @@ export default function makeGmailIcon(
     store.set(gmailAtom, gmail);
   });
 
-  opacityTrickleDown(parent, [subtitleText, gmailSwitch]);
 
   return gmailIcon;
 }

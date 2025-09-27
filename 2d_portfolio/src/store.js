@@ -1,4 +1,4 @@
-//pop up garna link aharu kholna
+//
 
 import {atom,createStore} from "jotai";
 

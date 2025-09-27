@@ -6,6 +6,9 @@ import { cameraZoomValueAtom } from "./store";
 import { store } from "./store";
 import makeSection from "./components/Section";
 import makeGmailIcon from "./components/GmailIcon";
+import makeSocialIcon from "./components/SocialIcon";
+import { makeAppear } from "./utilis";
+import { opacityTrickleDown } from "./utilis";
 
 
 //main game init function
@@ -106,15 +109,15 @@ export default async function initGame() {
     container.add([
       k.text(generelData.header.subtitle, { font: "ibm-regular", size: 20 }),
       k.color(k.Color.fromHex(PALETTE.color2)),
-      k.pos(485, 100),
+      k.pos(-1100, -600),
       k.opacity(0),
     ]);
 
-    const socialContainer = container.add([k.pos(-400, 200), k.opacity(0)]);
+    const socialContainer = container.add([k.pos(-1100, -600), k.opacity(0)]);
 
-    for (const socialData of socialData) {
-      if (socialData.name === "Gmail") {
-        makeGmailIcon(k, socialContainer, k.vec2(socialData.pos.x, socialData.pos.y), socialData.imageData, socialData.subtitle, socialContainer.email);
+    for (const item of socialData) {
+      if (item.name === "Gmail") {
+        makeGmailIcon(k, socialContainer, k.vec2(item.pos.x, item.pos.y), item.imageData, item.subtitle, socialContainer.email);
         continue;
 
 
@@ -122,16 +125,16 @@ export default async function initGame() {
       makeSocialIcon(
         k,
         socialContainer,
-        k.vec2(socialData.pos.x, socialData.pos.y),
-        socialData.imageData,
-        socialData.subtitle,
-        socialData.link,
-        socialData.description
+        k.vec2(item.pos.x, item.pos.y),
+        item.imageData,
+        item.subtitle,
+        item.link,
+        item.description
       );
     }
 
-    makeAppear(k, container);
-    makeAppear(k, socialContainer);
+    makeAppear(k,container);
+    makeAppear(k,socialContainer);
   }
   );
 

@@ -2,7 +2,7 @@ import { PALETTE } from "../constant";
 
 export default function makeIcon(K, parent, posVec2, imagedata, subtitle) {
     const icon = parent.add([
-        K.sprinte(imagedata.name, {
+        K.sprite(imagedata.name, {
             width: imagedata.width,
             height: imagedata.height,
         }),
