@@ -9,6 +9,7 @@ import makeGmailIcon from "./components/GmailIcon";
 import makeSocialIcon from "./components/SocialIcon";
 import { makeAppear } from "./utilis";
 import { opacityTrickleDown } from "./utilis";
+import makeIcon from "./components/Icon";
 
 
 //main game init function
@@ -16,6 +17,8 @@ export default async function initGame() {
 
   const generelData = await (await fetch("./configs/generalData.json")).json();//changes to json changes the file
   const socialData = await (await fetch("./configs/socialData.json")).json();
+  const skillsData = await (await fetch("./configs/skillsData.json")).json();
+
   const k = makeKaplayCtx();
   k.loadSprite("player", "./sprites/player.png", {
     sliceX: 4,
@@ -97,45 +100,46 @@ export default async function initGame() {
     tiledBackground.uniform.u_time = k.time() / 20; // update time every frame
   });
 
-  makeSection(k, k.vec2(k.center().x, k.center().y - 400), "About", (section) => {
-    const container = section.add([
-      k.pos(-805, -700),
-      k.opacity(0),
-      k.text(generelData.header.title, { font: "ibm-bold", size: 70 }),
-      k.color(k.Color.fromHex(PALETTE.color2)),
-      k.pos(-800, -500),
-      k.opacity(0),
-    ]);
-    container.add([
-      k.text(generelData.header.subtitle, { font: "ibm-regular", size: 36 }),
-      k.color(k.Color.fromHex(PALETTE.color2)),
-      k.pos(485, 100),
-      k.opacity(0),
-    ]);
+  makeSection(k, k.vec2(k.center().x, k.center().y - 400), "About", //about can be written as generalData.section1Name
+    (section) => {
+      const container = section.add([
+        k.pos(-805, -700),
+        k.opacity(0),
+        k.text(generelData.header.title, { font: "ibm-bold", size: 70 }),
+        k.color(k.Color.fromHex(PALETTE.color2)),
+        k.pos(-800, -600),
+        k.opacity(0),
+      ]);
+      container.add([
+        k.text(generelData.header.subtitle, { font: "ibm-regular", size: 36 }),
+        k.color(k.Color.fromHex(PALETTE.color2)),
+        k.pos(485, 100),
+        k.opacity(0),
+      ]);
 
-    const socialContainer = container.add([k.pos(130, 0), k.opacity(0)]);
+      const socialContainer = container.add([k.pos(130, 0), k.opacity(0)]);
 
-    for (const item of socialData) {
-      if (item.name === "Gmail") {
-        makeGmailIcon(k, socialContainer, k.vec2(item.pos.x, item.pos.y), item.imageData, item.subtitle, socialContainer.email);
-        continue;
+      for (const item of socialData) {
+        if (item.name === "Gmail") {
+          makeGmailIcon(k, socialContainer, k.vec2(item.pos.x, item.pos.y), item.imageData, item.name, item.address, socialContainer.gmail);
+          continue;
 
 
+        }
+        makeSocialIcon(
+          k,
+          socialContainer,
+          k.vec2(item.pos.x, item.pos.y),
+          item.imageData,
+          item.name,
+          item.link,
+          item.description
+        );
       }
-      makeSocialIcon(
-        k,
-        socialContainer,
-        k.vec2(item.pos.x, item.pos.y),
-        item.imageData,
-        item.subtitle,
-        item.link,
-        item.description
-      );
-    }
 
-    makeAppear(k,container);
-    makeAppear(k,socialContainer);
-  }
+      makeAppear(k, container);
+      makeAppear(k, socialContainer);
+    }
   );
 
   makeSection(k, k.vec2(k.center().x - 400, k.center().y + 100), "Projects", (section) => {
@@ -143,6 +147,17 @@ export default async function initGame() {
   });
 
   makeSection(k, k.vec2(k.center().x + 400, k.center().y + 100), "Skills", (section) => {
+
+    const container = section.add([
+      k.opacity(0),
+      k.pos(+800, +300),
+    ]);
+
+    for (const skillData of skillsData){
+      makeIcon(k, container, k.vec2(skillData.pos.x, skillData.pos.y), skillData.logoData, skillData.name);
+    }
+
+    makeAppear(k, container);
 
   });
 

@@ -1,0 +1,83 @@
+[
+  {
+    "pos": { "x": 0, "y": 0 },
+    "name": "JavaScript",
+    "logoData": {
+      "name": "javascript-logo",
+      "width": 128,
+      "height": 128
+    }
+  },
+  {
+    "pos": { "x": -200, "y": 0 },
+    "name": "adobe illustrator",
+    "logoData": {
+      "name": "illustrator-logo",
+      "width": 128,
+      "height": 128
+    }
+  },
+  {
+    "pos": { "x": 0, "y": -200 },
+    "name": "React",
+    "logoData": {
+      "name": "react-logo",
+      "width": 148,
+      "height": 128
+    }
+  },
+  {
+    "pos": { "x": 0, "y": 200 },
+    "name": "figma",
+    "logoData": {
+      "name": "figma-logo",
+      "width": 128,
+      "height": 128
+    }
+  },
+  {
+    "pos": { "x": -200, "y": 200 },
+    "name": "canva",
+    "logoData": {
+      "name": "canva-logo",
+      "width": 128,
+      "height": 128
+    }
+  },
+  {
+    "pos": { "x": -200, "y": -200 },
+    "name": "HTML",
+    "logoData": {
+      "name": "html-logo",
+      "width": 128,
+      "height": 128
+    }
+  },
+  {
+    "pos": { "x": -400, "y": -200 },
+    "name": "CSS",
+    "logoData": {
+      "name": "css-logo",
+      "width": 128,
+      "height": 128
+    }
+  },
+  {
+    "pos": { "x": -400, "y": 0 },
+    "name": "Tailwind",
+    "logoData": {
+      "name": "tailwind-logo",
+      "width": 140,
+      "height": 110
+    }
+  },
+  {
+    "pos": { "x": -400, "y": 200 },
+    "name": "adobe-photoshop",
+    "logoData": {
+      "name": "photoshop-logo",
+      "width": 128,
+      "height": 128
+    }
+  }
+]

@@ -104,13 +104,13 @@ p {
 }
 
 .camera-controller-btn {
-  color: var(--color2);
+  color: var(--color3);
   background-color: var(--color1);
   border: var(--color1);
   border-style: solid;
   border-radius: 12px;
   font-size: 2rem;
-  width: 12vw;
+  width: 3vw;
   opacity: 0.4;
 }
 

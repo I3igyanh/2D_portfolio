@@ -1,6 +1,7 @@
 import { PALETTE } from "../constant";
 import { gmailAtom, isGmailModalVisibleAtom, store } from "../store";
 import makeIcon from "./Icon";
+import { opacityTrickleDown } from "../utilis";
 
 export default function makeGmailIcon(
   k,
@@ -20,7 +21,7 @@ export default function makeGmailIcon(
 
   const gmailSwitch = gmailIcon.add([
     k.circle(30),
-    k.color(k.Color.fromHex(PALETTE.color1)),
+    k.color(k.Color.fromHex(PALETTE.color2)),
     k.anchor("center"),
     k.area(),
     k.pos(0, 150),
@@ -31,7 +32,7 @@ export default function makeGmailIcon(
     store.set(isGmailModalVisibleAtom, true);
     store.set(gmailAtom, gmail);
   });
-
+  opacityTrickleDown(parent, [subtitleText, gmailSwitch]);
 
   return gmailIcon;
 }
