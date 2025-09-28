@@ -10,6 +10,7 @@ import makeSocialIcon from "./components/SocialIcon";
 import { makeAppear } from "./utilis";
 import { opacityTrickleDown } from "./utilis";
 import makeIcon from "./components/Icon";
+import SkillIcon from "./components/SkillIcon";
 
 
 //main game init function
@@ -154,7 +155,7 @@ export default async function initGame() {
     ]);
 
     for (const skillData of skillsData){
-      makeIcon(k, container, k.vec2(skillData.pos.x, skillData.pos.y), skillData.logoData, skillData.name);
+      SkillIcon(k, container, k.vec2(skillData.pos.x, skillData.pos.y), skillData.logoData, skillData.name);
     }
 
     makeAppear(k, container);
