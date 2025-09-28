@@ -144,6 +144,10 @@ export default async function initGame() {
   );
 
   makeSection(k, k.vec2(k.center().x - 400, k.center().y + 100), "Projects", (section) => {
+    const container = section.add([
+      k.opacity(0),
+      k.pos(-800, -300),
+    ]);
 
   });
 
