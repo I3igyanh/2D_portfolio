@@ -10,7 +10,7 @@ export default function makeSocialIcon(k, parent, posVec2, imagedata, subtitle, 
 
     const linkSwitch = SocialIcon.add([
         k.circle(20),
-        k.color(PALETTE.color2),
+        k.color(PALETTE.color6),
         k.anchor("center"),
         k.area(),
         k.pos(0, 150),

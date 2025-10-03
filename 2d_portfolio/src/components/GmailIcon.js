@@ -21,7 +21,7 @@ export default function makeGmailIcon(
 
   const gmailSwitch = gmailIcon.add([
     k.circle(30),
-    k.color(k.Color.fromHex(PALETTE.color2)),
+    k.color(k.Color.fromHex(PALETTE.color6)),
     k.anchor("center"),
     k.area(),
     k.pos(0, 150),

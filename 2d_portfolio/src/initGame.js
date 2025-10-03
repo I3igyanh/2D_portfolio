@@ -60,7 +60,7 @@ export default async function initGame() {
   k.loadSprite("figma-logo", "./logos/figma-logo.png");
   k.loadSprite("photoshop-logo", "./logos/adobe-photoshop.png");
   k.loadSprite("illustrator-logo", "./logos/adobe-illustrator.png");
-  k.loadShaderURL("tiledPattern", null, "./shaders/tiledPattern.frag");
+  k.loadShaderURL("blob", null, "./shaders/colorblob.frag");
 
   //player zoom based on screen size garna
   const setInitCamZoomValue = () => {
@@ -83,23 +83,41 @@ export default async function initGame() {
 
   });
 
-  const tiledBackground = k.add([
+
+  const Background = k.add([
     k.uvquad(k.width(), k.height()),
-    k.shader("tiledPattern", () => ({
-      u_time: 0, // initialize
-      u_color1: k.Color.fromHex(PALETTE.color3),
-      u_color2: k.Color.fromHex(PALETTE.color1),
-      u_speed: k.vec2(1, -1),
-      u_aspect: k.width() / k.height(),
-      u_size: 5,
+    k.shader("blob", () => ({
+      u_time: k.time(),
+      u_resolution: k.vec2(k.width(), k.height()),
     })),
     k.pos(0, 0),
     k.fixed(),
   ]);
 
-  tiledBackground.onUpdate(() => {
-    tiledBackground.uniform.u_time = k.time() / 20; // update time every frame
+  Background.onUpdate(() => {
+    Background.width = k.width();
+    Background.height = k.height();
+    Background.uniform.u_resolution = k.vec2(k.width(), k.height()); // update time every frame
   });
+
+  //for a singular pattern useful for a checkerboard with 2 colors
+  // const Background = k.add([
+  //   k.uvquad(k.width(), k.height()),
+  //   k.shader("tiledPattern", () => ({
+  //     u_time: 0, // initialize
+  //     u_color1: k.Color.fromHex(PALETTE.color3),
+  //     u_color2: k.Color.fromHex(PALETTE.color1),
+  //     u_speed: k.vec2(1, -1),
+  //     u_aspect: k.width() / k.height(),
+  //     u_size: 5,
+  //   })),
+  //   k.pos(0, 0),
+  //   k.fixed(),
+  // ]);
+
+  // Background.onUpdate(() => {
+  //   Background.uniform.u_time = k.time() / 20; // update time every frame
+  // });
 
   makeSection(k, k.vec2(k.center().x, k.center().y - 400), "About", //about can be written as generalData.section1Name
     (section) => {
@@ -158,7 +176,7 @@ export default async function initGame() {
       k.pos(+800, +300),
     ]);
 
-    for (const skillData of skillsData){
+    for (const skillData of skillsData) {
       SkillIcon(k, container, k.vec2(skillData.pos.x, skillData.pos.y), skillData.logoData, skillData.name);
     }
 

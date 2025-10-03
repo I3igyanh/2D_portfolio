@@ -6,13 +6,13 @@ export default function makeSection(k, posVec2, sectionName, onCollide) {
         k.anchor("center"),
         k.area(),
         k.pos(posVec2),
-        k.color(PALETTE.color2),
+        k.color(PALETTE.color2),//square section box
         sectionName,
     ]);
 
     section.add([
         k.text(sectionName,{font:"ibm-bold",size:45, width:180, align:"center"}),
-        k.color(PALETTE.color2),
+        k.color(PALETTE.color5),//text over section box color
         k.anchor("center"),
         k.pos(0,-150),
     ]);
