@@ -1,4 +1,3 @@
-import { Loop } from "three/tsl";
 import { PALETTE } from "./constant";
 import makeKaplayCtx from "./kaplayCtx";
 import makePlayer from "./entities/player";
@@ -11,6 +10,7 @@ import { makeAppear } from "./utilis";
 import { opacityTrickleDown } from "./utilis";
 import makeIcon from "./components/Icon";
 import SkillIcon from "./components/SkillIcon";
+import makeProjectCard from "./components/ProjectsCard";
 
 
 //main game init function
@@ -19,6 +19,7 @@ export default async function initGame() {
   const generelData = await (await fetch("./configs/generalData.json")).json();//changes to json changes the file
   const socialData = await (await fetch("./configs/socialData.json")).json();
   const skillsData = await (await fetch("./configs/skillsData.json")).json();
+  const projectsData = await (await fetch("./configs/projectsData.json")).json();
 
   const k = makeKaplayCtx();
   k.loadSprite("player", "./sprites/player.png", {
@@ -41,8 +42,7 @@ export default async function initGame() {
       "walk-right-idle": 24,
       "walk-right-down": { from: 28, to: 31, loop: true },
       "walk-right-down-idle": 28,
-
-    }
+    },
   });
 
   k.loadFont("ibm-regular", "./fonts/IBMPlexSans-Regular.ttf");
@@ -60,6 +60,7 @@ export default async function initGame() {
   k.loadSprite("figma-logo", "./logos/figma-logo.png");
   k.loadSprite("photoshop-logo", "./logos/adobe-photoshop.png");
   k.loadSprite("illustrator-logo", "./logos/adobe-illustrator.png");
+  k.loadSprite("weather-app-js", "./projects/weather-app-js.png");
   k.loadShaderURL("blob", null, "./shaders/colorblob.frag");
 
   //player zoom based on screen size garna
@@ -161,11 +162,16 @@ export default async function initGame() {
     }
   );
 
-  makeSection(k, k.vec2(k.center().x - 400, k.center().y + 100), "Projects", (section) => {
+  makeSection(k, k.vec2(k.center().x - 400, k.center().y + 100),"Projects", (section) => {
     const container = section.add([
       k.opacity(0),
       k.pos(-800, -300),
     ]);
+
+    for (const project of projectsData){
+      makeProjectCard(k, container, k.vec2(project.pos.x, project.pos.y), project.data, project.thumbnail);
+    }
+    makeAppear(k, container);
 
   });
 
