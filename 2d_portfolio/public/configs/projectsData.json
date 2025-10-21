@@ -17,5 +17,25 @@
         }
       ]
     }
+  },
+
+  {
+    "pos": { "x": 0, "y": 840 },
+    "thumbnail": "fighting-game-js",
+    "data": {
+      "title": "2d game(work in progress) works on pc only",
+      "links": [
+        {
+          "id": 0,
+          "name": "Live Demo",
+          "link": "https://2playerfighter.netlify.app/"
+        },
+        {
+          "id": 1,
+          "name": "Source Code",
+          "link": "https://github.com/I3igyanh/2d_game"
+        }
+      ]
+    }
   }
 ]

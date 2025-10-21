@@ -61,6 +61,7 @@ export default async function initGame() {
   k.loadSprite("photoshop-logo", "./logos/adobe-photoshop.png");
   k.loadSprite("illustrator-logo", "./logos/adobe-illustrator.png");
   k.loadSprite("weather-app-js", "./projects/weather-app-js.png");
+  k.loadSprite("fighting-game-js","./projects/fighting-game-js.jpeg");
   k.loadShaderURL("blob", null, "./shaders/colorblob.frag");
 
   //player zoom based on screen size garna
